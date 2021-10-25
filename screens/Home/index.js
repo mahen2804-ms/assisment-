@@ -1,50 +1,27 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import {View, Text} from 'react-native';
+import {View, ScrollView, FlatList, useWindowDimensions} from 'react-native';
+import FastImage from 'react-native-fast-image';
 import SearchBar from 'react-native-dynamic-search-bar';
 import Typography from '../../components/Typography';
-import {ScrollView} from 'react-native-gesture-handler';
+import {RectButton} from 'react-native-gesture-handler';
+import Song from '../Songs';
 
 const Home = () => {
-  const [data, setData] = useState([]);
-
-  const loadDate = async () => {
-    try {
-      const res = await axios.get(
-        'https://itunes.apple.com/search?term=#searchTerm',
-      );
-      setData(res.data);
-    } catch (error) {}
-  };
-  // use effect for load components
-  useEffect(() => {
-    loadDate();
-  }, []);
-  console.warn(loadDate);
-
   return (
-    <ScrollView>
+    <View>
       <View>
-        <Text></Text>
-        <View>
-          <SearchBar
-            placeholder="Search here"
-            onPress={() => alert('onPress')}
-            onChangeText={() => {
-              console.log(text);
-            }}
-          />
-        </View>
-
-        {/* <View>
-          {data.map(item => (
-            <View key={item.resultCount}>
-              <Typography variant="body1">{item.results}</Typography>
-            </View>
-          ))}
-        </View> */}
+        <SearchBar
+          placeholder="Search here"
+          style={{marginVertical: 20}}
+          onPress={() => alert('onPress')}
+          onChangeText={() => {}}
+        />
       </View>
-    </ScrollView>
+      <View>
+        <Song />
+      </View>
+    </View>
   );
 };
 

@@ -3,8 +3,8 @@ import * as React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeIcon from './assets/Icons/home.svg';
-import ChatsIcon from './assets/Icons/chat_black.svg';
-import PhonIcon from './assets/Icons/phone_black.svg';
+import MusicIcon from './assets/Icons/music.svg';
+import FavoriteIcon from './assets/Icons/favorite.svg';
 import SettingIcon from './assets/Icons/settings.svg';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
@@ -13,8 +13,8 @@ const Drawer = createDrawerNavigator();
 
 const Stack = createNativeStackNavigator();
 const HomeStack = createNativeStackNavigator();
-const ChatsStack = createNativeStackNavigator();
-const CallsStack = createNativeStackNavigator();
+const MusicsStack = createNativeStackNavigator();
+const FavoriteStack = createNativeStackNavigator();
 const SettingsStack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -32,31 +32,31 @@ const HomeStackNavigation = () => {
   );
 };
 
-const ChatsStackNavigation = () => {
+const MusicsStackNavigation = () => {
   return (
-    <ChatsStack.Navigator
+    <MusicsStack.Navigator
       screenOptions={{
         headerShown: false,
       }}>
-      <ChatsStack.Screen
-        name="GalleryPage"
-        getComponent={() => require('./screens/Chats').default}
+      <MusicsStack.Screen
+        name="MusicPage"
+        getComponent={() => require('./screens/Music').default}
       />
-    </ChatsStack.Navigator>
+    </MusicsStack.Navigator>
   );
 };
 
-const CallsStackkNavigation = () => {
+const FavoriteStackkNavigation = () => {
   return (
-    <CallsStack.Navigator
+    <FavoriteStack.Navigator
       screenOptions={{
         headerShown: false,
       }}>
-      <CallsStack.Screen
-        name="GalleryPage"
-        getComponent={() => require('./screens/Calls').default}
+      <FavoriteStack.Screen
+        name="FavoritePage"
+        getComponent={() => require('./screens/Favorite').default}
       />
-    </CallsStack.Navigator>
+    </FavoriteStack.Navigator>
   );
 };
 
@@ -81,15 +81,14 @@ const HomeTabNavigation = () => {
         return {
           tabBarIcon: ({color, size}) => {
             switch (route.name) {
-              case 'Chats':
-                return <ChatsIcon width={size} width={size} fill="#ffae42" />;
-                break;
-              case 'Calls':
-                return <PhonIcon width={size} width={size} fill="#ffae42" />;
-                break;
+              case 'Music':
+                return <MusicIcon width={size} width={size} fill="#ffae42" />;
+              case 'Favorite':
+                return (
+                  <FavoriteIcon width={size} width={size} fill="#ffae42" />
+                );
               case 'Setting':
                 return <SettingIcon width={size} width={size} fill="#ffae42" />;
-                break;
               default:
                 return <HomeIcon width={size} width={size} fill="#ffae42" />;
                 break;
@@ -104,8 +103,8 @@ const HomeTabNavigation = () => {
         name="Home"
         component={HomeStackNavigation}
       />
-      <Tab.Screen name="Chats" component={ChatsStackNavigation} />
-      <Tab.Screen name="Calls" component={CallsStackkNavigation} />
+      <Tab.Screen name="Music" component={MusicsStackNavigation} />
+      <Tab.Screen name="Favorite" component={FavoriteStackkNavigation} />
       <Tab.Screen name="Setting" component={SettingsStackNavigation} />
     </Tab.Navigator>
   );
@@ -120,15 +119,16 @@ const ClassTabNavigation = () => {
             switch (route.name) {
               case 'Setting':
                 return <SettingIcon width={size} width={size} fill="#ffae42" />;
-                break;
+
               default:
-                return <PhonIcon width={size} width={size} fill="#ffae42" />;
-                break;
+                return (
+                  <FavoriteIcon width={size} width={size} fill="#ffae42" />
+                );
             }
           },
         };
       }}>
-      <Tab.Screen name="Calls" component={CallsStackkNavigation} />
+      <Tab.Screen name="Favorite" component={FavoriteStackkNavigation} />
       <Tab.Screen name="Setting" component={SettingsStackNavigation} />
     </Tab.Navigator>
   );
@@ -150,8 +150,6 @@ const App = () => {
         <Stack.Group
           screenOptions={{
             headerTransparent: false,
-
-            // headerShown: false,
             headerTitleStyle: {
               fontSize: 24,
               color: '#Ffa62b',

@@ -53,9 +53,6 @@ export const fields = [
       if (!value) {
         return 'Required...';
       }
-
-      return '';
-
       return '';
     },
   },

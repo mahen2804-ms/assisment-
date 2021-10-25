@@ -12,7 +12,6 @@ const Login = ({navigation}) => {
         initialValues={loginInitialValues}
         onSubmit={value => {
           navigation.navigate('Home');
-          // console.warn(value);
           Keyboard.dismiss();
         }}
         btnProps={{

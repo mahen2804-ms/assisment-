@@ -37,7 +37,7 @@ const Input = ({
             right: 0,
             top: 0,
             zIndex: 10,
-            marginHorizontal: 10,
+            marginHorizontal: 15,
             height: 40,
             justifyContent: 'center',
             alignItems: 'center',

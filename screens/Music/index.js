@@ -1,12 +1,12 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 
-const Calls = () => {
+const Music = () => {
   return (
     <View>
-      <Text>calls</Text>
+      <Text>Music</Text>
     </View>
   );
 };
 
-export default Calls;
+export default Music;
